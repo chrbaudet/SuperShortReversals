@@ -68,7 +68,7 @@ sub getDistances {
   my @toReturn;
   for (my $i = 0; $i < $nPermutations; ++$i) {  
     my $correctedPermutation = correctPermutation($permutations[$baseId], $permutations[$i]);
-    my $cmd = "sscpsr_distance ${correctedPermutation} | grep Distance | cut -f2 -d : | tr -d ' '";
+    my $cmd = "sscpssr_distance ${correctedPermutation} | grep Distance | cut -f2 -d : | tr -d ' '";
     my $distance = `${cmd}`;
     chomp($distance);
     push(@toReturn, sprintf("%05d", $distance));
