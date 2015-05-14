@@ -34,13 +34,19 @@ SOURCES1=sscpssr_distance.cpp
 
 SOURCES2=sucpssr_distance.cpp
 
+SOURCES3=shuffling_distance.cpp
+
 OBJECTS1=$(SOURCES1:.cpp=.o)
 
 OBJECTS2=$(SOURCES2:.cpp=.o)
 
+OBJECTS3=$(SOURCES3:.cpp=.o)
+
 EXECUTABLE1=$(SOURCES1:.cpp=)
 
 EXECUTABLE2=$(SOURCES2:.cpp=)
+
+EXECUTABLE3=$(SOURCES3:.cpp=)
 
 .cpp.o:
 	@echo "---------------------------------------------------------------------------"
@@ -50,7 +56,7 @@ EXECUTABLE2=$(SOURCES2:.cpp=)
 	@echo "---------------------------------------------------------------------------"
 	@echo
 
-all: $(EXECUTABLE1) $(EXECUTABLE2)
+all: $(EXECUTABLE1) $(EXECUTABLE2) $(EXECUTABLE3)
 
 $(EXECUTABLE1): $(OBJECTS1)
 	@echo "---------------------------------------------------------------------------"
@@ -68,7 +74,15 @@ $(EXECUTABLE2): $(OBJECTS2)
 	@echo "---------------------------------------------------------------------------"
 	@echo
 
+$(EXECUTABLE3): $(OBJECTS3)
+	@echo "---------------------------------------------------------------------------"
+	@echo
+	$(CPP) $(INCLUDES) $(CFLAGS) $(OBJECTS3) -o $(EXECUTABLE3) $(LIBRARIES)
+	@echo
+	@echo "---------------------------------------------------------------------------"
+	@echo
+
 clean:
 	@echo "Cleaning-up the mess..."
-	@rm -f $(OBJECTS1) $(EXECUTABLE1) $(OBJECTS2) $(EXECUTABLE2) *~
+	@rm -f $(OBJECTS1) $(EXECUTABLE1) $(OBJECTS2) $(EXECUTABLE2) $(OBJECTS3) $(EXECUTABLE3) *~
 	@echo "Done!"
